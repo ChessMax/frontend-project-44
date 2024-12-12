@@ -13,6 +13,8 @@
     "brain-games": "bin/brain-games.js"
   },
   "dependencies": {
+    "eslint": "^9.16.0",
+    "eslint-plugin-import": "^2.31.0",
     "readline-sync": "^1.4.10"
   }
 }
