@@ -6,14 +6,22 @@ import readlineSync from "readline-sync";
 const name = run();
 
 function play() {
-    let n = Math.floor(Math.random() * 100);
-    console.log(`Question: ${n}`);
+    let a = Math.floor(Math.random() * 100);
+    let b = Math.floor(Math.random() * 100);
+    let c = ['+', '-', '*'][Math.floor(Math.random() * 3)];
+    let d = a + b;
+    if (c === '-') {
+        d = a - b;
+    } else if (c === '*') {
+        d = a * b;
+    }
+    console.log(`Question: ${a} ${c} ${b}`);
     const answer = readlineSync.question('Your answer: ');
 
-    const isValidAnswer = (answer === 'yes' || answer === 'no') && (n % 2 === 0 ? 'yes' : 'no') === answer;
+    const isValidAnswer = `${d}` === answer;
 
     if (!isValidAnswer) {
-        console.log(`'yes' is wrong answer ;(. Correct answer was 'no'.`);
+        console.log(`'${answer}' is wrong answer ;(. Correct answer was '${d}'.`);
         console.log(`Let's try again, ${name}!`);
         return false;
     } else {
@@ -22,7 +30,7 @@ function play() {
     }
 }
 
-console.log('Answer "yes" if the number is even, otherwise answer "no".');
+console.log('What is the result of the expression?');
 const gameResult = play() && play() && play();
 if (gameResult === true) {
     console.log(`Congratulations, ${name}!`);
